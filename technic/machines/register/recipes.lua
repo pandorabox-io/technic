@@ -6,7 +6,7 @@ function technic.register_recipe_type(typename, origdata)
 	for k, v in pairs(origdata) do data[k] = v end
 	data.input_size = data.input_size or 1
 	data.output_size = data.output_size or 1
-	if have_ui and unified_inventory.register_craft_type and data.output_size == 1 then
+	if have_ui and unified_inventory.register_craft_type then
 		unified_inventory.register_craft_type(typename, {
 			description = data.description,
 			width = data.input_size,
@@ -51,10 +51,10 @@ local function register_recipe(typename, data)
 	end
 
 	technic.recipes[typename].recipes[index] = recipe
-	if have_ui and technic.recipes[typename].output_size == 1 then
+	if have_ui and (technic.recipes[typename].output_size == 1 or data.add_ui_recipe) then
 		unified_inventory.register_craft({
 			type = typename,
-			output = data.output,
+			output = type(data.output) == "table" and data.output[data.add_ui_recipe or 1] or data.output,
 			items = data.input,
 			width = 0,
 		})
