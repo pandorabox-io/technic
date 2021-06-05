@@ -12,6 +12,7 @@ local defaults = {
 	enable_sonic_screwdriver = "true",
 	enable_tree_tap = "true",
 	enable_vacuum = "true",
+	enable_geiger_counter = "true",
 
 	-- Power tool options
 	multimeter_remote_start_ttl = "300",
